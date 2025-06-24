@@ -31,10 +31,10 @@ print(f'IN_PRODUCTION: {IN_PRODUCTION}')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if IN_PRODUCTION == 'true':
-    DEBUG = True
+    DEBUG = False
     ALLOWED_HOSTS = []
 elif IN_PRODUCTION == 'false':
-    DEBUG = False
+    DEBUG = True
     ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]', '0.0.0.0', '[::]']
 
 # Application definition
@@ -134,3 +134,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
